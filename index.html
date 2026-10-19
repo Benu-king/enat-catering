@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>እናት Catering</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;800&family=Figtree:wght@400;500&family=Noto+Serif+Ethiopic:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light dark;--pbg:#fbf4e4;--ink:#231512;--mute:#6b5a4e;--hero:linear-gradient(135deg,#fbefd0,#e8c36a);--hi:#3a1a10;--acc:#7a1f2b;--dark:#4a1520;--t1:#7a1f2b;--t2:#e8c36a;--t3:#fbefd0;--t4:#3a1a10;--pad:max(5vw,calc((100vw - 1500px)/2));box-sizing:border-box}
+@media(prefers-color-scheme:dark){:root{--pbg:#1b1310!important;--ink:#f5ecdc;--mute:#bba99a}}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--pbg);color:var(--ink);font:400 clamp(15px,1.5vw,17px)/1.6 Figtree,system-ui,sans-serif;overflow-x:hidden;transition:background .8s}
+.tib{height:10px;background:repeating-linear-gradient(90deg,var(--t1) 0 22px,var(--t2) 22px 44px,var(--t3) 44px 66px,var(--t4) 66px 88px)}
+header{position:sticky;top:0;z-index:5;background:var(--pbg);padding-top:env(safe-area-inset-top,0px)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px var(--pad)}
+.logo{font:900 30px 'Noto Serif Ethiopic',serif;color:var(--ink);text-decoration:none;line-height:1}
+header nav{display:flex;align-items:center;gap:clamp(12px,2.4vw,28px)}
+header nav a{color:var(--ink);text-decoration:none;font-weight:500;font-size:clamp(12px,1.4vw,15px)}
+header nav a:not(.btn):hover{text-decoration:underline;text-underline-offset:6px}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+.btn{display:inline-block;padding:13px 26px;border:2px solid var(--acc);background:var(--acc);color:#fff;font:500 15px Figtree;text-decoration:none;border-radius:40px;cursor:pointer;min-height:46px;transition:transform .2s,background .6s}
+.btn:hover{transform:translateY(-2px)}
+header .btn{padding:9px 18px;min-height:44px;display:inline-flex;align-items:center}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(20px,4vw,60px);align-items:center;min-height:calc(100vh - 70px);min-height:calc(100svh - 70px);padding:clamp(26px,5vw,64px) var(--pad);background:var(--hero);color:var(--hi)}
+h1{font:900 clamp(100px,19vw,270px)/.95 'Noto Serif Ethiopic',serif;letter-spacing:-.02em}
+h1 small{display:block;font:800 clamp(34px,5vw,70px)/1 'Bricolage Grotesque',sans-serif;letter-spacing:-.03em;margin-top:10px}
+.lead{font-size:1.15em;max-width:36ch;margin:20px 0 22px}
+h2{font:800 clamp(32px,5vw,68px)/1 'Bricolage Grotesque',sans-serif;letter-spacing:-.03em;margin-bottom:26px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border:2px solid var(--hi);background:rgba(255,255,255,.55);color:var(--hi);border-radius:40px;font:500 14px Figtree;cursor:pointer;min-height:44px;transition:background .5s}
+.chip i{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--hi)}
+.chip[aria-pressed=true]{background:var(--acc);border-color:var(--acc);color:#fff}
+.chip[aria-pressed=true] i{border-color:#fff}
+.hint{font-size:13px;margin:12px 0 8px;font-weight:500}
+#c{width:100%;height:clamp(280px,50vh,540px);display:block;touch-action:pan-y;cursor:grab}
+.guests{display:flex;align-items:center;gap:14px;margin:16px 0;font-weight:500}
+.guests input{flex:1;accent-color:var(--acc);max-width:260px;height:32px}
+.occ{display:flex;gap:10px;padding:clamp(36px,7vw,90px) var(--pad);min-height:520px;background:var(--pbg)}
+.occ article{flex:1;min-width:0;border-radius:26px;padding:24px;display:flex;flex-direction:column;justify-content:flex-end;cursor:pointer;transition:flex .6s cubic-bezier(.2,.7,.2,1),box-shadow .4s;overflow:hidden}
+.occ article:hover,.occ article.on{flex:2.6}
+.occ article.on{box-shadow:0 0 0 4px var(--acc)}
+.occ .am{font:900 clamp(30px,4vw,60px)/1.1 'Noto Serif Ethiopic',serif}
+.occ h3{font:800 clamp(20px,2vw,26px) 'Bricolage Grotesque',sans-serif;margin:10px 0 4px}
+.occ p{font-size:15px;max-height:0;opacity:0;transition:.5s;max-width:36ch}
+.occ article:hover p,.occ article.on p{max-height:150px;opacity:1}
+.how{padding:clamp(30px,6vw,80px) var(--pad);background:var(--pbg)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.steps div{border-top:3px solid var(--acc);padding-top:14px}
+.steps b{display:block;font:800 clamp(60px,8vw,110px)/1 'Bricolage Grotesque',sans-serif;color:transparent;-webkit-text-stroke:2px var(--ink)}
+.steps h3{font:800 24px 'Bricolage Grotesque',sans-serif;margin:6px 0}
+.steps p{color:var(--mute)}
+.contact{background:var(--dark);color:#f8efe0;padding:clamp(40px,7vw,90px) var(--pad);display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,70px);transition:background .8s}
+.contact p{color:#e3d5cc}
+label{font-size:13px;font-weight:500;display:block;margin-bottom:4px}
+input[type=text],input[type=tel],textarea{width:100%;background:#fffaf0;border:2px solid #fffaf0;color:#231512;font:inherit;font-size:16px;padding:12px 14px;margin-bottom:14px;border-radius:12px}
+.contact .btn{background:#fff2d0;border-color:#fff2d0;color:#231512;margin:0 10px 10px 0}
+footer{padding:22px var(--pad) calc(22px + env(safe-area-inset-bottom,0px));font-size:13px;color:var(--mute);background:var(--pbg)}
+@keyframes fl{from{opacity:.5}to{opacity:1}}
+@media(max-width:900px){.hero,.contact{grid-template-columns:1fr}.occ{flex-direction:column;min-height:0}.occ article,.occ article:hover,.occ article.on{flex:none;min-height:150px}.occ p{max-height:150px;opacity:1}.steps{grid-template-columns:1fr}h1{font-size:clamp(96px,32vw,200px)}}
+@media(max-width:640px){header nav a:not(.btn){display:none}}
+@media(max-width:900px) and (orientation:landscape) and (max-height:520px){.hero{grid-template-columns:1fr 1fr;min-height:100vh}h1{font-size:clamp(70px,16vw,120px)}h1 small{font-size:28px}.lead{display:none}#c{height:62vh}}
+@media(max-width:360px){.chip{padding:8px 12px;font-size:13px}.btn{padding:12px 20px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header><div class="bar"><a class="logo" href="#home">እናት</a><nav><a href="#occasions">Occasions</a><a href="#how">How it works</a><a href="#contact">Contact</a><a class="btn" href="#contact">Book</a></nav></div><div class="tib"></div></header>
+
+<main>
+<section class="hero" id="home">
+<div>
+<h1>እናት<small>catering</small></h1>
+<p class="lead">Ethiopian food for weddings, birthdays, good news and farewells. Choose your occasion, build your platter, then we cook it.</p>
+<div class="chips" id="occs" role="group" aria-label="Occasion"></div>
+</div>
+<div class="stage">
+<canvas id="c" aria-label="3D platter. Drag to turn it. Pick dishes below to add them."></canvas>
+<p class="hint" id="hint">Drag to turn the platter. Tap a dish to add or remove it.</p>
+<div class="chips" id="dishes" role="group" aria-label="Dishes"></div>
+<div class="guests"><label for="g" style="margin:0">Guests</label><input id="g" type="range" min="10" max="500" step="10" value="80"><output id="go">80</output></div>
+<a class="btn" href="#contact">Request this platter</a>
+</div>
+</section>
+
+<div class="tib"></div>
+<section class="occ" id="occasions" aria-label="Choose an occasion"></section>
+
+<section class="how" id="how"><h2>Three steps to your table</h2>
+<div class="steps">
+<div><b>1</b><h3>Build the platter</h3><p>Pick your occasion and dishes at the top of this page.</p></div>
+<div><b>2</b><h3>Tell us the day</h3><p>Send the date, the place and the number of guests.</p></div>
+<div><b>3</b><h3>We cook and serve</h3><p>Fresh food arrives hot, with injera, and with buna if you want it.</p></div>
+</div></section>
+
+<div class="tib"></div>
+<section class="contact" id="contact">
+<div><h2>Plan your table</h2><p>Phone: +251 000 000 000<br>Email: hello@enatcatering.com<br>Addis Ababa, Ethiopia</p></div>
+<div><form id="f"><label for="n">Name</label><input type="text" id="n" autocomplete="name" required><label for="p">Phone</label><input type="tel" id="p" autocomplete="tel"><label for="m">Your request</label><textarea id="m" rows="5" required></textarea><button class="btn" type="submit">Send request</button></form><div id="st" role="status" style="margin-top:14px"></div></div>
+</section>
+</main>
+<footer>© 2026 እናት Catering. Addis Ababa, Ethiopia.</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+var TO='hello@enatcatering.com';
+var DISH=[['Doro wat',0xa5301b],['Kitfo',0xb0434a],['Tibs',0x6e3b1d],['Shiro',0xc98a1e],['Gomen',0x3f7a34],['Misir',0xb85a1e],['Beets',0x7a1f4d],['Ayib',0xf1ead8]];
+var OCC=[
+{n:'Wedding',am:'ሰርግ',d:'Melse feasts, buna ceremony and full buffets for tens or hundreds of guests.',h:'linear-gradient(135deg,#fbefd0,#e8c36a)',hi:'#3a1a10',acc:'#7a1f2b',dark:'#4a1520',pbg:'#fbf4e4',t:['#7a1f2b','#e8c36a','#fbefd0','#3a1a10'],fl:0xf3dfae,lt:0xfff3dc,cf:[0xe8c36a,0xfff2cf,0xffffff,0xb8892b]},
+{n:'Birthday',am:'ልደት',d:'Family platters, a gursha table for the children and cake from our partner bakers.',h:'linear-gradient(135deg,#ffd9b8,#ff8a5c)',hi:'#3b140c',acc:'#b0124f',dark:'#5c1030',pbg:'#fff3ea',t:['#b0124f','#ff8a5c','#ffd23f','#3b140c'],fl:0xffc9a0,lt:0xffeede,cf:[0xff5c8a,0xffd23f,0x4fc3f7,0xff8a5c,0x9b5de5]},
+{n:'Good news',am:'እንኳን ደስ አለዎት',d:'Graduations, new homes, new babies and promotions. A table ready when the good news arrives.',h:'linear-gradient(135deg,#dff3d2,#7cc48a)',hi:'#11301a',acc:'#1f6b3a',dark:'#123a24',pbg:'#f1f8ec',t:['#1f6b3a','#f2c230','#dff3d2','#11301a'],fl:0xbfe3b0,lt:0xf3ffe8,cf:[0x1f6b3a,0xf2c230,0xffffff,0x7cc48a]},
+{n:'Memorial',am:'ተዝካር',d:'Quiet and respectful service for funerals and mourning gatherings, so the family can be together.',h:'linear-gradient(135deg,#e9edf0,#b5c2cf)',hi:'#1d2733',acc:'#3d5266',dark:'#1f2a36',pbg:'#f3f5f7',t:['#3d5266','#b5c2cf','#e9edf0','#1d2733'],fl:0xcfd8e0,lt:0xf2f6ff,cf:[0xffffff,0xdfe6ee,0xb5c2cf]}];
+var sel={'Doro wat':1,'Shiro':1,'Gomen':1,'Beets':1},oi=0,guests=80,touched=false,toggle3=function(){},theme3=function(){};
+var root=document.documentElement,hero=document.querySelector('.hero'),mEl=document.getElementById('m');
+function hex(n){return '#'+('00000'+n.toString(16)).slice(-6)}
+function summary(){var l=DISH.filter(function(d){return sel[d[0]]}).map(function(d){return d[0]});return 'Occasion: '+OCC[oi].n+'\nGuests: '+guests+'\nDishes: '+(l.length?l.join(', '):'to be decided')+'\nDate and place: '}
+function sync(){if(!touched)mEl.value=summary()}
+mEl.oninput=function(){touched=true};
+var oc=document.getElementById('occs'),op=document.getElementById('occasions');
+OCC.forEach(function(o,i){
+ var b=document.createElement('button');b.className='chip';b.textContent=o.n;oc.appendChild(b);b.onclick=function(){apply(i)};
+ var a=document.createElement('article');a.tabIndex=0;a.setAttribute('role','button');a.style.background=o.h;a.style.color=o.hi;a.innerHTML='<div class="am">'+o.am+'</div><h3>'+o.n+'</h3><p>'+o.d+'</p>';
+ a.onclick=function(){apply(i)};a.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();apply(i)}};op.appendChild(a)});
+function apply(i,first){oi=i;var o=OCC[i],s=root.style;
+ s.setProperty('--hero',o.h);s.setProperty('--hi',o.hi);s.setProperty('--acc',o.acc);s.setProperty('--dark',o.dark);s.setProperty('--pbg',o.pbg);
+ o.t.forEach(function(c,k){s.setProperty('--t'+(k+1),c)});
+ [].forEach.call(oc.children,function(x,k){x.setAttribute('aria-pressed',k===i)});
+ [].forEach.call(op.children,function(x,k){x.classList.toggle('on',k===i);x.setAttribute('aria-pressed',k===i)});
+ if(!first){hero.style.animation='none';void hero.offsetWidth;hero.style.animation='fl .7s'}
+ theme3(o,first);sync()}
+var dc=document.getElementById('dishes');
+DISH.forEach(function(d){var b=document.createElement('button');b.className='chip';b.innerHTML='<i style="background:'+hex(d[1])+'"></i>'+d[0];b.setAttribute('aria-pressed',!!sel[d[0]]);b.onclick=function(){sel[d[0]]=!sel[d[0]];b.setAttribute('aria-pressed',!!sel[d[0]]);sync();toggle3(d[0])};dc.appendChild(b)});
+var g=document.getElementById('g'),go=document.getElementById('go');g.oninput=function(){guests=+g.value;go.textContent=guests;sync()};
+document.getElementById('f').onsubmit=function(e){e.preventDefault();send(mEl.value+'\nPhone: '+document.getElementById('p').value)};
+function send(text){var name=document.getElementById('n').value,subj='Event request from '+name,st=document.getElementById('st');st.textContent='Sending...';
+ fetch('https://formsubmit.co/ajax/'+TO,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({name:name,message:text,_subject:subj})}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(){st.textContent='Thank you. We will call you soon.';document.getElementById('f').reset()}).catch(function(){
+  st.textContent='';var t=document.createElement('p');t.textContent='This page could not send the request directly. Use a button below, or copy the text and send it to '+TO+'.';
+  var a=document.createElement('a');a.className='btn';a.target='_blank';a.rel='noopener';a.textContent='Open in Gmail';a.href='https://mail.google.com/mail/?view=cm&to='+TO+'&su='+encodeURIComponent(subj)+'&body='+encodeURIComponent(text);
+  var b=document.createElement('a');b.className='btn';b.target='_blank';b.rel='noopener';b.textContent='Open email app';b.href='mailto:'+TO+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(text);
+  var x=document.createElement('textarea');x.readOnly=true;x.rows=4;x.value=text;x.onfocus=function(){x.select()};st.append(t,a,b,x)})}
+apply(0,true);
+
+var T=window.THREE,cv=document.getElementById('c'),R,calm=matchMedia('(prefers-reduced-motion:reduce)').matches,low=(navigator.deviceMemory&&navigator.deviceMemory<=2)||false;
+try{R=new T.WebGLRenderer({canvas:cv,antialias:!low,alpha:true})}catch(e){}
+if(!T||!R){cv.style.display='none';document.getElementById('hint').textContent='The 3D view is not available on this device. You can still choose your dishes and send your request.';return}
+cv.addEventListener('webglcontextlost',function(e){e.preventDefault()});
+R.setPixelRatio(Math.min(devicePixelRatio,low?1:2));R.shadowMap.enabled=true;R.shadowMap.type=T.PCFSoftShadowMap;
+var S=new T.Scene(),C=new T.PerspectiveCamera(34,1,.1,60),G=new T.Group(),i;S.add(G);
+var cw=document.createElement('canvas');cw.width=cw.height=256;var x=cw.getContext('2d'),cols=['#c9a36a','#8c3524','#c9a36a','#3f6130','#c9a36a','#d9a21b','#c9a36a','#1c1210'];
+for(i=0;i<8;i++){x.fillStyle=cols[i];x.fillRect(0,i*32,256,32)}x.strokeStyle='rgba(0,0,0,.28)';x.lineWidth=2;
+for(i=0;i<32;i++){x.beginPath();x.moveTo(i*8,0);x.lineTo(i*8,256);x.stroke()}for(i=0;i<16;i++){x.beginPath();x.moveTo(0,i*16);x.lineTo(256,i*16);x.stroke()}
+var wt=new T.CanvasTexture(cw);wt.wrapS=wt.wrapT=T.RepeatWrapping;wt.repeat.set(10,2);
+var ic=document.createElement('canvas');ic.width=ic.height=256;x=ic.getContext('2d');x.fillStyle='#e6d3a9';x.fillRect(0,0,256,256);
+for(i=0;i<500;i++){x.fillStyle='rgba(120,90,40,'+(Math.random()*.25)+')';x.beginPath();x.arc(Math.random()*256,Math.random()*256,Math.random()*2.6+.6,0,6.3);x.fill()}
+function add(geo,mat,px,py,pz,par){var o=new T.Mesh(geo,mat);o.position.set(px,py,pz);o.castShadow=o.receiveShadow=true;(par||G).add(o);return o}
+add(new T.CylinderGeometry(.55,.85,1.2,48),new T.MeshStandardMaterial({map:wt,roughness:.85}),0,.6,0);
+var wt2=wt.clone();wt2.needsUpdate=true;wt2.repeat.set(16,1);
+add(new T.CylinderGeometry(1.7,1.55,.12,64),new T.MeshStandardMaterial({map:wt2,roughness:.8}),0,1.26,0);
+add(new T.CylinderGeometry(1.5,1.5,.05,64),new T.MeshStandardMaterial({map:new T.CanvasTexture(ic),roughness:1}),0,1.34,0);
+var disc=new T.Mesh(new T.CircleGeometry(3.3,64),new T.MeshStandardMaterial({color:OCC[0].fl,roughness:.95}));disc.rotation.x=-Math.PI/2;disc.position.y=.004;disc.receiveShadow=true;S.add(disc);
+var gr=new T.Mesh(new T.PlaneGeometry(30,30),new T.ShadowMaterial({opacity:.22}));gr.rotation.x=-Math.PI/2;gr.receiveShadow=true;S.add(gr);
+var hemi=new T.HemisphereLight(0xfff6e6,0x8a6a4a,.95);S.add(hemi);
+var sun=new T.DirectionalLight(0xffffff,.9);sun.position.set(4,9,4);sun.castShadow=true;sun.shadow.mapSize.set(low?512:1024,low?512:1024);var sc=sun.shadow.camera;sc.left=sc.bottom=-4;sc.right=sc.top=4;sun.shadow.bias=-.0006;S.add(sun);
+
+var NP=90,cg=new T.BufferGeometry(),cp=new Float32Array(NP*3),cc=new Float32Array(NP*3),cvl=[],life=0,mem=false;
+cg.setAttribute('position',new T.BufferAttribute(cp,3));cg.setAttribute('color',new T.BufferAttribute(cc,3));
+var dk=document.createElement('canvas');dk.width=dk.height=32;x=dk.getContext('2d');x.fillStyle='#fff';x.beginPath();x.arc(16,16,15,0,6.3);x.fill();
+var cm=new T.Points(cg,new T.PointsMaterial({size:.15,map:new T.CanvasTexture(dk),vertexColors:true,transparent:true,opacity:0,depthWrite:false}));cm.frustumCulled=false;S.add(cm);
+var fT=new T.Color(OCC[0].fl),lT=new T.Color(OCC[0].lt),tmp=new T.Color();
+theme3=function(o,first){fT.setHex(o.fl);lT.setHex(o.lt);if(first||calm)return;mem=o.n==='Memorial';life=1;
+ for(var k=0;k<NP;k++){var a=Math.random()*6.283,sp=mem?.008:.03+Math.random()*.05;cp[k*3]=Math.cos(a)*.3;cp[k*3+1]=2.8+Math.random()*.6;cp[k*3+2]=Math.sin(a)*.3;
+  cvl[k]=[Math.cos(a)*sp,mem?.004+Math.random()*.004:.05+Math.random()*.07,Math.sin(a)*sp];tmp.setHex(o.cf[k%o.cf.length]);cc[k*3]=tmp.r;cc[k*3+1]=tmp.g;cc[k*3+2]=tmp.b}
+ cg.attributes.color.needsUpdate=true};
+
+var dishes={},slots=[],SL=[];for(i=0;i<8;i++){SL.push([Math.cos(i/8*6.283)*1.0,Math.sin(i/8*6.283)*1.0]);slots.push(null)}
+function make(name,col){var gp=new T.Group(),mat=new T.MeshStandardMaterial({color:col,roughness:.5});
+ var m=add(new T.SphereGeometry(.34,28,18),mat,0,0,0,gp);m.scale.set(1,.5,1);
+ var gm=new T.MeshStandardMaterial({color:new T.Color(col).offsetHSL(0,0,.18),roughness:.6});
+ for(var k=0;k<5;k++){var a=Math.random()*6.28,r=Math.random()*.2;add(new T.SphereGeometry(.05,10,8),gm,Math.cos(a)*r,.15,Math.sin(a)*r,gp)}
+ if(name==='Doro wat'){var e=add(new T.SphereGeometry(.12,16,12),new T.MeshStandardMaterial({color:0xf6efe0,roughness:.35}),0,.2,0,gp);e.scale.set(1,.7,1)}
+ G.add(gp);return {g:gp,p:0,t:0,s:-1}}
+function place(name){var o=dishes[name];if(!o){var d=DISH.filter(function(q){return q[0]===name})[0];o=dishes[name]=make(name,d[1])}
+ if(sel[name]){var s=slots.indexOf(null);if(s<0)return;slots[s]=name;o.s=s;o.g.position.x=SL[s][0];o.g.position.z=SL[s][1];o.t=1}
+ else{if(o.s>=0)slots[o.s]=null;o.t=0}}
+toggle3=place;DISH.forEach(function(d){if(sel[d[0]])place(d[0])});
+var drag=false,lastX=0,vis=true;
+cv.addEventListener('pointerdown',function(e){drag=true;lastX=e.clientX;cv.style.cursor='grabbing'});
+addEventListener('pointerup',function(){drag=false;cv.style.cursor='grab'});
+addEventListener('pointercancel',function(){drag=false});
+addEventListener('pointermove',function(e){if(drag){G.rotation.y+=(e.clientX-lastX)*.01;lastX=e.clientX}});
+function size(){var w=cv.clientWidth,h=cv.clientHeight;if(!w||!h)return;R.setSize(w,h,false);C.aspect=w/h;C.updateProjectionMatrix()}
+if(window.ResizeObserver)new ResizeObserver(size).observe(cv);addEventListener('resize',size);addEventListener('orientationchange',size);size();
+if(window.IntersectionObserver)new IntersectionObserver(function(e){vis=e[0].isIntersecting}).observe(cv);
+function tick(){
+ requestAnimationFrame(tick);if(!vis)return;
+ var asp=C.aspect,kf=2*Math.tan(C.fov*Math.PI/360),d=Math.max(7.6,4.6/(kf*asp));
+ C.position.set(0,d*.55,d*.82);C.lookAt(0,1.1,0);
+ if(!drag&&!calm)G.rotation.y+=.004;
+ disc.material.color.lerp(fT,.06);hemi.color.lerp(lT,.06);
+ for(var n in dishes){var o=dishes[n];o.p=calm?o.t:o.p+(o.t-o.p)*.11;var q=1-o.p;o.g.position.y=1.42+q*q*4;o.g.scale.setScalar(Math.max(.001,Math.min(1,o.p*1.4)));o.g.visible=o.p>.02||o.t===1}
+ if(life>0){for(var k=0;k<NP;k++){var v=cvl[k];if(!v)continue;cp[k*3]+=v[0];cp[k*3+1]+=v[1];cp[k*3+2]+=v[2];v[1]-=mem?.0004:.0022;if(cp[k*3+1]<.05){cp[k*3+1]=.05;v[0]=v[1]=v[2]=0}}
+  cg.attributes.position.needsUpdate=true;life-=mem?.004:.007;cm.material.opacity=Math.max(0,Math.min(1,life*1.6))}else cm.material.opacity=0;
+ R.render(S,C)}
+tick();
+})();
+</script>
+</body>
+</html>
